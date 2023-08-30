@@ -14,7 +14,7 @@ from io import BytesIO
 # setting up main Canvas
 
 main_window = Tk()
-main_window.title("CodSoft Calculator by Pappu Manna")
+main_window.title("Calculator by Pappu")
 main_window.config(background="magenta")
 main_window.geometry("490x410")
 main_window.resizable(False,False)
@@ -60,9 +60,14 @@ def update(x):
 # solve() is called when "=" button is clicked to solve the equation using eval()
 
 def solve():
-    global z
-    eqn.set(eval(z))
-    z = str(eval(z))
+    try:
+        global z
+        eqn.set(eval(z))
+        z = str(eval(z))
+    except:
+        messagebox.showwarning("Error" , "Division by zero NOT possible")
+        z = ""
+        eqn.set(z)
 
 
 # backspace() is called when backspace button is pressed to erase the last character
