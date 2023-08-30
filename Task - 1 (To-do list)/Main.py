@@ -9,7 +9,7 @@ from io import BytesIO
 main_window = Tk()
 main_window.title("To-do List by Pappu")
 main_window.geometry("500x300")
-main_window.resizable(False , False)
+# main_window.resizable(False , False)
 main_window.configure(bg="light blue")
 
 
@@ -39,9 +39,9 @@ def del_box():
         list1.delete(list1.curselection())
 
 
+
 def del_all():
     list1.delete(0,END)
-
 
 
 def check_mark():
@@ -51,41 +51,41 @@ def check_mark():
 
 
     if sel_txt:
-        if (" -Done" in list_item):
+        if (" (Done)" in list_item):
             messagebox.showwarning("Warning", "Task Already Marked")
         else:
             list1.delete(item_index)
-            new = list_item + " -Done"
+            new = list_item + " (Done)"
             list1.insert(item_index, new)
 
 
 
 entry1 = Entry(main_window , textvariable = text ,highlightbackground="blue")
-entry1.configure(background="light grey" , foreground= "dark green" )
+entry1.configure(background="light grey" , foreground= "dark red" )
 entry1.place(x= 30 , y=30)
 
 
 style = ttk.Style()
 
-style.configure("TButton", borderwidth=5, background="magenta")
+style.configure("TButton", borderwidth=5, background="magenta" )
 style.map("TButton", background=[('pressed', 'black'), ('active', 'white')] , foreground=[('pressed', 'red'), ('active', 'blue')])
 
 
-button1 = ttk.Button(main_window, text="Add" , command= lambda : add_box(), style="TButton")
+button1 = ttk.Button(main_window, text="Add to the list" , command= lambda : add_box(), style="TButton")
 button1.place(x = 200 , y=20)
 
-button2 = ttk.Button(main_window, text="Delete",command= lambda : del_box() ,style="TButton")
+button2 = ttk.Button(main_window, text="Del from list",command= lambda : del_box() ,style="TButton")
 button2.place(x = 200 , y =100)
 
-button3 = ttk.Button(main_window, text="Marked",command= lambda: check_mark(), style="TButton")
+button3 = ttk.Button(main_window, text="Mark This Done",command= lambda: check_mark(), style="TButton")
 button3.place(x = 200 , y =180)
 
-button4 = ttk.Button(main_window, text="Delete All", command = lambda : del_all() , style="TButton")
+button4 = ttk.Button(main_window, text="Del all Marked", command = lambda : del_all() , style="TButton")
 button4.place(x = 200 , y =260)
 
 list1 = Listbox(main_window)
-list1.configure(bg="light green", foreground="blue")
-list1.place(x = 320 , y =20)
+list1.configure(bg="light green", foreground="blue" , height=16)
+list1.place(x = 330 , y =20)
 
 
 main_window.mainloop()
