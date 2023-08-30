@@ -9,7 +9,7 @@ from io import BytesIO
 main_window = Tk()
 main_window.title("To-do List by Pappu")
 main_window.geometry("500x300")
-# main_window.resizable(False , False)
+main_window.resizable(False , False)
 main_window.configure(bg="light blue")
 
 
