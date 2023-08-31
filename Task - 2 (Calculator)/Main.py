@@ -15,14 +15,14 @@ from io import BytesIO
 
 main_window = Tk()
 main_window.title("Calculator by Pappu")
-main_window.config(background="magenta")
+main_window.config(background="blue")
 main_window.geometry("490x410")
 main_window.resizable(False,False)
 
 
 # Creating Lines 
 
-canvas = Canvas(main_window, width=470, height=390 , bg="pink" , highlightthickness=0)
+canvas = Canvas(main_window, width=470, height=390 , bg="light blue" , highlightthickness=0)
 canvas.place(x=10 ,y= 10)
 line = canvas.create_line(10,305,450,305, fill="blue", width=2)
 line2 = canvas.create_line(367,80,367,375, fill="blue", width=2)
@@ -65,7 +65,7 @@ def solve():
         eqn.set(eval(z))
         z = str(eval(z))
     except:
-        messagebox.showwarning("Error" , "Division by zero NOT possible")
+        messagebox.showwarning("Error" , "Enter correct equation or check for zero division")
         z = ""
         eqn.set(z)
 
@@ -113,17 +113,17 @@ style = ttk.Style()
 # Number Buttons configuration
 
 style.configure("TButton", borderwidth=10, padding=8, relief="sunken", background="magenta")
-style.map("TButton", background=[('pressed', 'black'), ('active', 'white')] , foreground=[('pressed', 'red'), ('active', 'blue')])
+style.map("TButton", background=[('pressed', 'red'), ('active', 'green')] , foreground=[('pressed', ''), ('active', 'red')])
 
 
 # Operator Buttons Configuration
 
 style.configure("C.TButton", borderwidth=10, padding=8, relief="sunken", background="red")
-style.map("C.TButton", background=[('pressed', 'black'), ('active', 'white')] , foreground=[('pressed', 'red'), ('active', 'blue')])
+style.map("C.TButton", background=[('pressed', 'red'), ('active', 'green')] , foreground=[('pressed', ''), ('active', 'red')])
 
 
 style.configure("Default.TButton", borderwidth=10, padding=8, relief="sunken", background="dark green")
-style.map("C.TButton", background=[('pressed', 'black'), ('active', 'white')] , foreground=[('pressed', 'red'), ('active', 'blue')])
+style.map("C.TButton", background=[('pressed', 'red'), ('active', 'green')] , foreground=[('pressed', ''), ('active', 'red')])
 
 
 
@@ -184,14 +184,14 @@ b19 = ttk.Button(main_window , text="%" , command= lambda : update("%"), width =
 
 # clear All button
 
-b16 = ttk.Button(main_window , text="C" , command= lambda : clear_all(), width = 4 ,  style="C.TButton").place(x=380 , y=170)
+b16 = ttk.Button(main_window , text="C" , command= clear_all, width = 4 ,  style="C.TButton").place(x=380 , y=170)
 
 
 
 
 # Solve Button
 
-b18 = ttk.Button(main_window , text="=" , command= lambda : solve(), width = 4 ,  style="Default.TButton").place(x=380 , y=330)
+b18 = ttk.Button(main_window , text="=" , command= solve, width = 4 ,  style="Default.TButton").place(x=380 , y=330)
 
 
 
@@ -202,7 +202,7 @@ get_bksp_icon = requests.get("https://imgtr.ee/images/2023/08/30/edd9aa67ab69542
 bksp_icon = Image.open(BytesIO(get_bksp_icon))
 bksp_img = ImageTk.PhotoImage(bksp_icon)
 
-b17 = ttk.Button(main_window , text="" , command= lambda : backspace() ,  style="C.TButton" , image=bksp_img).place(x=380 , y=90)
+b17 = ttk.Button(main_window , text="" , command= backspace ,  style="C.TButton" , image=bksp_img).place(x=380 , y=90)
 
 
 # messagebox is used 
