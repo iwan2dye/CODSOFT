@@ -3,9 +3,17 @@ from tkinter import messagebox
 from tkinter import ttk
 import tkinter.font as tkFont
 from PIL import Image , ImageTk
-import requests
-from io import BytesIO
+import random
 
+questions =[
+    ["What is the largest planet in our solar system?", "Mars", "Jupiter", "Saturn", "Venus", 2],
+    ["Which famous space telescope was launched in 1990?", "Hubble Space Telescope", "Kepler Space Telescope", "Chandra X-ray Observatory", "Spitzer Space Telescope", 1],
+    ["What is the name of the first artificial satellite launched into Earth's orbit?", "Voyager 1", "Apollo 11", "Sputnik 1", "Cassini", 3],
+    ["Which galaxy is part of the Local Group and is the closest to the Milky Way?", "Andromeda Galaxy", "Triangulum Galaxy", "Whirlpool Galaxy", "Sombrero Galaxy", 1],
+    ["What phenomenon occurs when a star collapses under gravity, resulting in an incredibly dense object?", "Supernova", "Black Hole", "Neutron Star", "White Dwarf", 2]
+]
+
+random.shuffle(questions)
 
 main_window = Tk()
 main_window.title("Quiz Game")
@@ -28,12 +36,17 @@ main_window.iconphoto(True , icon_img)
 
 
 
+
+
+
+
+
 canvas = Canvas(main_window, width=1280, height=720 , borderwidth=-5 , bd=0)
 canvas.pack()
 
-get_banner = requests.get("https://imgtr.ee/images/2023/08/30/a2dd5787e01aee2d7938b3066fc1faec.png").content
-banner = Image.open(BytesIO(get_banner))
-banner_img = ImageTk.PhotoImage(banner)
+# get_banner = requests.get("https://imgtr.ee/images/2023/08/30/a2dd5787e01aee2d7938b3066fc1faec.png").content
+# banner = Image.open(fi)
+banner_img = ImageTk.PhotoImage(file="C:\Users\Pappy\OneDrive\Documents\Codsoft\CODSOFTJUNE\Task - 5 (quiz game)\Quiz Game.png")
 
 
 canvas.create_image(640, 360, image=banner_img)
@@ -45,7 +58,7 @@ total_score = 0
 
 def next_question(button):
     desc_Label.config(text="")
-    q_Label.config(text = "what is maths ??")
+    q_Label.config(text = questions[i])
     button
 
 
@@ -62,14 +75,6 @@ start_but.place(x = 600 , y = 500)
 
 q_Label = Label(canvas , text = "" , background="black" , foreground="#02f2ea")
 q_Label.place(x = 600 , y = 360)
-
-
-
-
-
-
-
-
 
 
 
