@@ -14,12 +14,6 @@ main_window.configure(bg="light blue")
 
 
 
-get_icon = requests.get("https://imgtr.ee/images/2023/08/30/2a14b6ec98835c0a8667dc11e7a232af.png").content
-icon = Image.open(BytesIO(get_icon))
-icon_img = ImageTk.PhotoImage(icon)
-
-main_window.iconphoto(True , icon_img)
-
 
 
 text = StringVar()

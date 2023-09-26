@@ -1,27 +1,52 @@
-from tkinter import *
-from tkinter import messagebox
-from tkinter import ttk
-import tkinter.font as tkFont
-from PIL import Image , ImageTk
-import requests
-from io import BytesIO
+import tkinter as tk
+import string
+import random as rand
+
+def generate_pass():
+    
+    pass_length = int(pass_len.get())
+    
+    alphabets = list(string.ascii_lowercase + string.ascii_uppercase)
+    numbers = [str(i) for i in range(10)]
+    special_characters = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '-', '+', '=', '{', '}', '[', ']', '|', '\\', ';', ':', ',', '.', '<', '>', '/', '?', '`', '~']
+
+    all_char = alphabets+numbers+special_characters
+
+    password_list = rand.sample(all_char , pass_length)
+
+    password = ""
+
+    for i in range(len(password_list)):
+        password += password_list[i]
+    
+    password_entry.delete(0, tk.END)
+    password_entry.insert(0, password)
+    lab1.config(text="  Now copy the password  ")
+    
 
 
+if __name__ == "__main__":
 
-main_window = Tk()
-main_window.title("Password Generator by Pappu")
-main_window.config(background="light pink")
-main_window.geometry("490x410")
-main_window.resizable(False,False)
+    main_window = tk.Tk()
+    main_window.title("Password Generator by Pappu")
+    main_window.config(background="light blue")
+    main_window.geometry("400x300")
+    main_window.resizable(False,False)
 
+    lab1 = tk.Label(main_window, text="Enter Password Length Below",background="light blue")
+    lab1.pack(padx=20, pady=20)
 
-get_icon = requests.get("https://imgtr.ee/images/2023/08/30/2a14b6ec98835c0a8667dc11e7a232af.png").content
-icon = Image.open(BytesIO(get_icon))
-icon_img = ImageTk.PhotoImage(icon)
+    # getting password length
+    pass_len = tk.Entry(main_window)
+    pass_len.pack(padx=20, pady=20)
 
-main_window.iconphoto(True , icon_img)
+    # BUtton for password generation
+    gen_but = tk.Button(main_window, text="Generate Password", command=generate_pass)
+    gen_but.pack(padx=20, pady=20)
 
+    # displaying the generated password
+    password_entry = tk.Entry(main_window)
+    password_entry.pack(padx=20, pady=20)
+    
 
-
-
-main_window.mainloop()
+    main_window.mainloop()
